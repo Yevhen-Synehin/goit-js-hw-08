@@ -1,4 +1,5 @@
-
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 // Add imports above this line
 import { galleryItems } from './gallery-items';
@@ -33,25 +34,16 @@ galeryContainer.append(...galleryMarkUp);
 
 galeryContainer.addEventListener('click', onImageClick);
 
+const refs = {
+    captionsData: "alt",
+    captionDelay: 250
+};
+
 function onImageClick(evt) {
     evt.preventDefault();
 
-    if (evt.target.tagName !== 'IMG') {
-        return;
-    }
-
-    const instance = basicLightbox.create(`
-    <img src=${evt.target.dataset.source} width="1400" height="900">
-    `);
-    instance.show(() => document.addEventListener("keydown", onEscBtn));
-    
-    function onEscBtn(evt) {
-        if (!instance.visible()) {
-            return
-        } else {
-            if (evt.code === "Escape") {
-                instance.close(() => document.removeEventListener("keydown", onEscBtn));
-            };
-        }
-    };
-};
+    let gallery = new SimpleLightbox('.gallery a', refs);
+gallery.on('show.simplelightbox', function () {
+});
+galeryContainer.removeEventListener('click', onImageClick);
+}
