@@ -32,18 +32,9 @@ return itemContainer;
 
 galeryContainer.append(...galleryMarkUp);
 
-galeryContainer.addEventListener('click', onImageClick);
-
 const refs = {
     captionsData: "alt",
     captionDelay: 250
 };
 
-function onImageClick(evt) {
-    evt.preventDefault();
-
-    let gallery = new SimpleLightbox('.gallery a', refs);
-gallery.on('show.simplelightbox', function () {
-});
-galeryContainer.removeEventListener('click', onImageClick);
-}
+let gallery = new SimpleLightbox('.gallery a', refs);
